@@ -1,6 +1,6 @@
 import numpy as np
 
-np.random.seed(10)
+np.random.seed()
 
 num_transactions = 20
 

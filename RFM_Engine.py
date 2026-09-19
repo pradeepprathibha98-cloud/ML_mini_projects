@@ -1,6 +1,6 @@
 import numpy as np
 
-np.random.seed()
+np.random
 
 num_transactions = 20
 
@@ -11,3 +11,4 @@ purchase_amount = np.round(np.random.uniform(10.0, 100.0, size = (num_transactio
 transactions = np.hstack((customer_id, days_ago, purchase_amount))
 
 print("Raw Transaction Data:\n", transactions[:5])
+

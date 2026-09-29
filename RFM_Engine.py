@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 #Raw Transaction matrix
 
@@ -59,3 +58,23 @@ f_scores = np.select(
 print("Recency scoring : ", r_scores)
 print("Frequency scoring : ", f_scores)
 print("Monetary scoring : ", m_scores)
+
+#Vectorized segmentation 
+
+conditions = [
+    (r_scores >= 3) & (m_scores >= 3),
+    (r_scores <= 2) & (m_scores >= 3),
+    (r_scores >= 3) & (m_scores <= 2)
+]
+
+choices = ["VIP Customer", "At Risk", "New Customer"]
+segments = np.select(conditions, choices, default = "Regular")
+
+final_scores = np.column_stack((rfm_matrix, r_scores, f_scores, m_scores))
+
+print("Final RFM Scores Table : \n", final_scores)
+
+print("Customer Segments\n")
+for i in range(len(rfm_matrix)):
+    cust_id = int(rfm_matrix[i, 0])
+    print(f"Customer [cust-id] | Segment : [segments[i]]")

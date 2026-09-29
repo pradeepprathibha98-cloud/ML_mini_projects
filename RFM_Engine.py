@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+#Raw Transaction matrix
+
 np.random
 
 num_transactions = 20
@@ -12,6 +14,8 @@ purchase_amount = np.round(np.random.uniform(10.0, 100.0, size = (num_transactio
 transactions = np.hstack((customer_id, days_ago, purchase_amount))
 
 print("Raw Transaction Data:\n", transactions[:5])
+
+#Aggregation of the Matrix
 
 unique_customers = np.unique(transactions[:, 0])
 
@@ -30,3 +34,28 @@ for customer_id in unique_customers:
 rfm_matrix = np.array(aggreg_data)
 
 print("Aggregated RFM Matrix (Customer_ID, Recency, Frequency, Monetary) : \n", rfm_matrix)
+
+#Quantile Scoring
+
+recency = rfm_matrix[:, 1]
+frequency = rfm_matrix[:, 2]
+monetary = rfm_matrix[:, 3]
+
+rq = np.percentile(recency, [25, 50, 75])
+r_scores = np.select(
+    [recency <= rq[0], recency <= rq[1], recency <= rq[2]], [4, 3, 2], default = 1
+)
+
+mq = np.percentile(monetary, [25, 50, 75])
+m_scores = np.select(
+    [monetary >= mq[2], monetary >= mq[1], monetary >= mq[0]], [4, 3, 2], default = 1
+)
+
+fq = np.percentile(frequency, [25, 50, 75])
+f_scores = np.select(
+    [frequency >= fq[2], frequency >= fq[1], frequency >= fq[0]], [4, 3, 2], default = 1
+)
+
+print("Recency scoring : ", r_scores)
+print("Frequency scoring : ", f_scores)
+print("Monetary scoring : ", m_scores)

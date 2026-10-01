@@ -77,4 +77,4 @@ print("Final RFM Scores Table : \n", final_scores)
 print("Customer Segments\n")
 for i in range(len(rfm_matrix)):
     cust_id = int(rfm_matrix[i, 0])
-    print(f"Customer [cust-id] | Segment : [segments[i]]")
+    print(f"Customer {cust_id} | Segment : {segments[i]}")

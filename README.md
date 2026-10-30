@@ -1,4 +1,4 @@
-# Stock Market & Data Analysis Toolkit
+# Business & Data Analysis Toolkit
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Libraries](https://img.shields.io/badge/Libraries-NumPy%20%7C%20Pandas%20%7C%20Matplotlib%20%7C%20Seaborn-orange.svg)](https://github.com/pradeepprathibha98-cloud/ML_mini_projects)
